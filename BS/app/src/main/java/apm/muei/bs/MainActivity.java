@@ -4,6 +4,7 @@ import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         // Create the UnityPlayer
+        Log.d("BSUnity", "Recreating Unity Player");
         unityPlayer = new UnityPlayer(this);
         int glesMode = unityPlayer.getSettings().getInt("gles_mode", 1);
         boolean trueColor8888 = true;
@@ -34,8 +36,8 @@ public class MainActivity extends AppCompatActivity
 //        FrameLayout.LayoutParams lp =
 //                new FrameLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
 //                        FrameLayout.LayoutParams.MATCH_PARENT);
-//        layout.addView(unityPlayer.getView(), 0, lp);
-//        unityPlayer.requestFocus();
+//        layout.addView(mUnityPlayer.getView(), 0, lp);
+//        mUnityPlayer.requestFocus();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -89,40 +91,43 @@ public class MainActivity extends AppCompatActivity
         return unityPlayer;
     }
 
+    @Override
+    public void setUnityPlayer(UnityPlayer unityPlayer) { this.unityPlayer = unityPlayer; }
+
 //    @Override
 //    public void onDestroy() {
-//        unityPlayer.quit();
+//        mUnityPlayer.quit();
 //        super.onDestroy();
 //    }
 //
 //    @Override
 //    public void onPause() {
 //        super.onPause();
-//        unityPlayer.pause();
+//        mUnityPlayer.pause();
 //    }
 //
 //    @Override
 //    public void onResume() {
 //        super.onResume();
-//        unityPlayer.resume();
+//        mUnityPlayer.resume();
 //    }
 //
 //    @Override
 //    public void onStart() {
 //        super.onStart();
-//        unityPlayer.start();
+//        mUnityPlayer.start();
 //    }
 //
 //    @Override
 //    public void onStop() {
 //        super.onStop();
-//        unityPlayer.stop();
+//        mUnityPlayer.stop();
 //    }
 //
 //    @Override
 //    public void onConfigurationChanged(Configuration newConfig) {
 //        super.onConfigurationChanged(newConfig);
-//        unityPlayer.configurationChanged(newConfig);
+//        mUnityPlayer.configurationChanged(newConfig);
 //    }
 
     @Override
@@ -133,9 +138,9 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        getSupportFragmentManager().popBackStack();
-    }
+//    @Override
+//    public void onBackPressed() {
+//        //super.onBackPressed();
+//        getSupportFragmentManager().popBackStack();
+//    }
 }
